@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block titulo %}Detalhes{% endblock %}
+
+{% block conteudo %}
+
+<div class="container col-sm-7 my-3 p-3">
+
+	<div class="card">
+		
+		<div class="card-header text-center bg-secondary text-light"><strong>{{ pergunta.descricao }}</strong></div>
+
+		<form action="{% url 'enquete:voto' pergunta.id %}" method="post" class="card-body">
+
+			{% if error_message %}<div class="alert alert-danger p-2 my-2">{{ error_message }}</div>{% endif %}
+
+			{% if pergunta.resposta_set.all %}
+				<div class="form-row">
+					{% csrf_token %}
+					{% for resposta in pergunta.resposta_set.all %}
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<div class="input-group-text">
+									<input type="radio" name="resposta" id="resposta{{ forloop.counter }}" value="{{ resposta.id }}" />
+								</div>
+								</div>
+							<input type="text" class="form-control" for="resposta{{ forloop.counter }}" value="{{ resposta.descricao }}" disabled />
+						</div>
+					{% endfor %}
+					<input type="submit" class="btn btn-primary" value="Confirmar" />
+				</div>
+			{% else %}
+            	<div class="alert alert-info">Ainda não existem alternativas de escolha.</div>
+            	<a class="nav-link" href="/">Início<span class="sr-only">(current)</span></a>
+    		{% endif %}
+		</form>
+	</div>
+</div>
+{% endblock %}

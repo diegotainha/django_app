@@ -1,0 +1,38 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+	{% block css %}{% endblock %}
+  <title>{% block titulo %}{% endblock %}</title>
+</head>
+<body class="bg-light">
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark navbar-collapse" data-toggle="collapse">
+    <a class="navbar-brand" href="#">Aplicativo de enquetes</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Início<span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+      <div class="form-inline">
+        <a class="nav-link btn btn-secondary" href="/admin" target="_blank">Admin<span class="sr-only"></span></a>
+      </div>
+    </div>
+  </nav>
+  
+	{% block conteudo %}{% endblock %}
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="{% static 'js/popper.min.js' %}"></script>
+  <script src="{% static 'js/jquery-3.3.1.js' %}"></script>
+  <script src="{% static 'js/bootstrap.js' %}"></script>
+	{% block js %}{% endblock %}
+</body>
+</html>

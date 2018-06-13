@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block titulo %}Lista de Perguntas{% endblock %}
+
+{% block conteudo %}
+    
+<div class="container col-sm-7 my-3 p-3">
+
+    <div class="card">
+
+        {% if lista_ultimas_perguntas %}
+
+        <div class="card-header text-center bg-info text-light"><strong>Enquetes:</strong></div>
+
+        <div class="card-body">
+            
+            {% for pergunta in lista_ultimas_perguntas %}
+                <div class="card mb-3">
+                    <div class="card-header text-center">{{ pergunta.descricao }}</div>
+                    <div class="card-body text-center">
+                    <a href="{% url 'enquete:detalhes' pergunta.id %}" class="btn btn-primary">Responder</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% else %}
+            <div class="alert alert-info">Ainda não existem enquetes.</div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

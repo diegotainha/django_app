@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block titulo %}Resultado{% endblock %}
+
+{% block conteudo %}
+
+<main role="main" class="container col-md-4">
+    <div class="my-3 p-3 bg-white rounded box-shadow">
+
+		<h3 class="text-center">Resultado</h3>
+		<div class="d-flex align-items-center p-3 my-3 text-white-50 bg-secondary rounded box-shadow">
+			<div class="lh-100">
+			  <h6 class="mb-0 text-white lh-100">{{ pergunta.descricao }}</h6>
+			</div>
+		</div>
+
+		<ul>
+		{% for resposta in pergunta.resposta_set.all %}
+			<div class="media text-muted pt-3">
+				<p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+					<strong class="d-block text-gray-dark">{{ resposta.descricao }}</strong>
+				</p>
+				<span class="badge badge-primary badge-pill">{{ resposta.votos }} voto{{ resposta.votos|pluralize }}</span>
+				
+			</div>
+		{% endfor %}
+		</ul>
+
+		<a href="{% url 'enquete:detalhes' pergunta.id %}" class="btn">Votar novamente.</a>
+
+	</div>
+</main>
+{% endblock %}
